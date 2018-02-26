@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, TextInput, View, StyleSheet, ActvityIndicator, ListView} from 'react-native';
+import { Text, TextInput, View, StyleSheet, FlatList} from 'react-native';
 
 export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {inputText: '', outputText :[],};
+		this.state = {inputText: '', outputText :[], verbResults:[],};
 	}
 
 	//this function will make an ajax call to the apiURL. the result will be an array of objects. I will then loop through that array of objects
@@ -42,7 +42,7 @@ export default class Home extends React.Component {
 		console.log("Running process Translation function: ");
 		let rawData = this.state.outputText;
 		let verbArray = [];
-		let verb = "";
+		let verbRoots = [];
 		//for each object in the rawData array,
 		for(let i = 0; i < rawData.length; i++){
 			//loop through each object and test if the word is a verb. If it is a verb, then push it into verbArray.
@@ -60,11 +60,28 @@ export default class Home extends React.Component {
 			}
 		}
 
-		//now loop through verbArray.
-		for(key in verbArray){
-			if(key == "root"){
-				verbArray[key];
+		//now loop through verbArray. push all root verbs into the verbRoots array.
+		for(let j = 0; j < verbArray.length; j++){
+			let eachVerb = verbArray[j];
+			for(let verbProperty in eachVerb){
+				if(verbProperty == "root"){
+					let verb_li = {};
+					verb_li["key"] = eachVerb[verbProperty];
+					verbRoots.push(verb_li);
+					console.log("Array of key, verbs: " + verbRoots);
+				}
 			}
+		}
+		//set a new state called verbResults, have its value be the array of verbRoots.
+		this.setState({verbResults: verbRoots});
+		console.log("verb Results: " + this.state.verbResults);
+	}
+
+	dynamicClear(){
+		if(this.state.inputText == ""){
+			console.log("Hit the dynamic clear function");
+			this.state.outputText = [];
+			this.state.verbResults = [];
 		}
 	}
 
@@ -78,12 +95,18 @@ export default class Home extends React.Component {
 						placeholder="Type here to translate!"
 						onChangeText={(text) => this.setState({inputText:text},
 						function(){
+							this.dynamicClear();
 							this.retrieveTranslationData();
 						}
 						)}
 					/>
 					<Text>..em Portugues é</Text>
-					<Text>{this.state.outputText}</Text>
+					<FlatList
+						data={this.state.verbResults}
+						renderItem={
+							({item}) => <Text>{item.key}</Text>
+						}
+					/>
 				</View>
 			</View>
 		);
