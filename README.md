@@ -2,7 +2,7 @@
  
  This project is a React Native App utilizing the UltraLingua API (http://api.ultralingua.com/ulapi/rest).
  
- It's purpose is to type in english words. The app will automatically search for related words by making an AJAX call to the API.
+ It's purpose is to type in english words in order to search for relevant Portuguese verbs. The app will automatically search for related words by making an AJAX call to the API.
  
  Rudimentary algorithms within my app will then filter out the JSON data response, test the data to see if it is a verb or not, and if it is a verb, it will display all relevant verb-related results in a list format.
  
