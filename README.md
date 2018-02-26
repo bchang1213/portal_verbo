@@ -1,3 +1,23 @@
+ Hello,
+ 
+ This project is a React Native App utilizing the UltraLingua API (http://api.ultralingua.com/ulapi/rest).
+ 
+ It's purpose is to type in english words in order to search for relevant Portuguese verbs. The app will automatically search for related words by making an AJAX call to the API.
+ 
+ Rudimentary algorithms within my app will then filter out the JSON data response, test the data to see if it is a verb or not, and if it is a verb, it will display all relevant verb-related results in a list format.
+ 
+ You can then click on the desired verb and view the various verb endings and conjugation information about that verb.
+ 
+ This app's purpose is to help Portuguese students learn more about the Portuguese language and carry a handy verb conjugator that will aid them in becoming more fluent in Portuguese.
+ 
+ You can clone this app onto your computer, npm install the necessary dependencies, and then run:
+ 
+ ### `npm start`
+ 
+ Open it in the [Expo app](https://expo.io) on your phone to view it and play around.
+
+
+-----------------------------------------------------------------------
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
