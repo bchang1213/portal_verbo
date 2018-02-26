@@ -1,4 +1,4 @@
-###<BRIAN CHANG SPEAKING>
+### <BRIAN CHANG SPEAKING>
  
  Hello,
  
@@ -18,7 +18,7 @@
  
  Open it in the [Expo app](https://expo.io) on your phone to view it and play around.
 
-###</BRIAN CHANG SPEAKING>
+### </BRIAN CHANG SPEAKING>
 -----------------------------------------------------------------------
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
