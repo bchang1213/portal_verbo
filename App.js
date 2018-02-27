@@ -43,6 +43,7 @@ export default class Home extends React.Component {
 		let rawData = this.state.outputText;
 		let verbArray = [];
 		let verbRoots = [];
+		let verbCount = {};
 		//for each object in the rawData array,
 		for(let i = 0; i < rawData.length; i++){
 			//loop through each object and test if the word is a verb. If it is a verb, then push it into verbArray.
@@ -64,21 +65,34 @@ export default class Home extends React.Component {
 		for(let j = 0; j < verbArray.length; j++){
 			let eachVerb = verbArray[j];
 			for(let verbProperty in eachVerb){
-				if(verbProperty == "root"){
+				if(verbProperty == "text"){
 					let verb_li = {};
-					verb_li["key"] = eachVerb[verbProperty];
-					verbRoots.push(verb_li);
-					console.log("Array of key, verbs: " + verbRoots);
+					if(!verbCount[eachVerb[verbProperty]]){
+						verbCount[eachVerb[verbProperty]] = 1;
+						verb_li["key"] = eachVerb[verbProperty];
+						verbRoots.push(verb_li);
+					}
+					else{
+						verbCount[eachVerb[verbProperty]]++;
+					}
 				}
 			}
+
+		}
+		console.log("verbRoots Array: " + verbRoots);
+
+		console.log("verbCount: " + verbCount);
+		for(eachCount in verbCount){
+			console.log("The count for each word is:" + eachCount + ":" + verbCount[eachCount]);
 		}
 		//set a new state called verbResults, have its value be the array of verbRoots.
 		this.setState({verbResults: verbRoots});
 		console.log("verb Results: " + this.state.verbResults);
+
 	}
 
 	dynamicClear(){
-		if(this.state.inputText == ""){
+		if(this.state.inputText === ""){
 			console.log("Hit the dynamic clear function");
 			this.state.outputText = [];
 			this.state.verbResults = [];
